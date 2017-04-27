@@ -2,8 +2,8 @@ html {
 	background-color: black;
 }
 
-button {
-	text-align: center;
+#headline {
+	color: white;
 }
 
 #app {
