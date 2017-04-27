@@ -1,0 +1,193 @@
+<!DOCTYPE html><!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>(@#*$#*@)</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+		<link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="../node_modules/bootstrap-range-input/dist/css/bootstrap-range-input.min.css"> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <!--<link rel="stylesheet" href="css/main.css"> -->
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id='app'>
+        <div id='main'>
+            <!-- automate populating rows -->
+<!--             <div id="volume">
+            <h4>Volume</h4>
+            <input class= "form-control" type="range" min="0.0" max="1.0" step="0.01"
+                value="0.5" list="volumes" name="volume">
+            <datalist id="volumes">
+              <option value="0.2" label="Mute">
+              <option value="0.6" label="100%">
+            </datalist>
+            </div>
+            <hr/> -->
+            <form method=POST action="/api/howamifeeling">
+            <textarea name="feels" id="text-area" autofocus placeholder="How goes it?" rows="20" cols="20"></textarea>
+            <hr/>
+            <button>PRINT</button>
+            </form>
+            <br />
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <div class='box' id='one'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='two'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='three'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='four'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='five'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='six'><p></p>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <div class='box' id='seven'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='eight'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='nine'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='ten'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='eleven'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twelve'><p></p>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <div class='box' id='thirteen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='fourteen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='fifteen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='sixteen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='seventeen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='eighteen'><p></p>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <div class='box' id='nineteen'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-one'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-two'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-three'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-four'><p></p>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-five'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-six'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-seven'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-eight'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='twenty-nine'><p></p>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='box' id='thirty'><p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="/jquery/jquery.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+<!--         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script> -->
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<!--         <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
+        <script src="js/utils.js"></script>
+        <script src="js/scales.js"></script>
+        <script src="js/sequencers.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

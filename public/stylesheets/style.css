@@ -1,0 +1,50 @@
+html {
+	background-color: black;
+}
+
+button {
+	text-align: center;
+}
+
+#app {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	/*background-image: url('../images/maxresdefault.jpg');*/
+	background-color: black;
+	/*background-repeat: no-repeat;*/
+	background-position: center;
+	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+	color: black;
+}
+
+#main {
+	position: relative;
+	margin: 10px auto;
+	height: 1200px;
+	width: 1000px;
+	padding-top: 40px;
+}
+
+.box {
+	border: solid 1px black;
+	border: none;
+	height: 100px;
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+p {
+	padding-top: 82px;
+	text-align: center;
+}
+
+.row {
+	display: inline;
+}
+
+#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #ten, #eleven, #twelve, #thirteen, #fourteen, #fifteen, #sixteen, #seventeen, #eighteen, #nineteen, #twenty, #twenty-one, #twenty-two, #twenty-three, #twenty-four, #twenty-five, #twenty-six, #twenty-seven, #twenty-eight, #twenty-nine, #thirty {
+	background-color: transparent;
+}
