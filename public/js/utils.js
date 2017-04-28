@@ -19,4 +19,11 @@ function findValueOfWords(str) {
   return arrOfFreq;
 }
 
-module.exports = {findValueOfWords};
+function reduceValues(freqs) {
+  var masterFreq = freqs.reduce((acc, curr, i) => {
+    return acc + curr;
+  });
+  return (masterFreq / freqs.length);
+}
+
+module.exports = {findValueOfWords, reduceValues};

@@ -1,3 +1,10 @@
+function createTuning(tuning, tonic) {
+  var tune = new Tune();
+  tune.loadScale(tuning);
+  tune.tonicize(tonic);
+  return tune;
+}
+
 function createNoteTable() {
   let noteFreq = [];
   for (let i=0; i< 6; i++) {

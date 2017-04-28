@@ -37,12 +37,14 @@ function makeDistortionCurve(amount) {
 // let volumeControl = document.querySelector("input[name='volume']");
 // volumeControl.addEventListener("change", changeVolume, false);
 
-// grab html
+// grab background
 let background = document.getElementById("app");
 
+// arrays of frequencies
 var arr = new Array(8);
 var atonalArr = new Array(8);
 
+// osc constructor
 function createOscillator (audioCtx, freq, type) {
 	this.osc = audioCtx.createOscillator();
 	this.osc.frequency.value = freq;
@@ -63,9 +65,11 @@ createOscillator.prototype.setFreq = function(freq) {
 	this.freq = freq;
 };
 
-createOscillator.prototype.setFreq = function(type) {
+createOscillator.prototype.setType = function(type) {
 	this.type = type;
 };
+
+const toneTypes = ["sine", "square", "triangle", "sawtooth"];
 
 // global volume and pitch values
 gainNode.gain.value = 0.08;
@@ -115,6 +119,9 @@ window.addEventListener('keydown', (e) => {
 
 	const notes = createNoteTable();
 	const linearNotes = createLinearNoteTable();
+	const xTuning = createTuning('xenakis_chrom', 220);
+
+	console.log("xTuning", xTuning);
 
 	let allowed = true;
 
@@ -129,7 +136,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc1 = new createOscillator(audioCtx, notes[2]["A"], "square");
+		// let osc1 = new createOscillator(audioCtx, notes[2]["A"], "square");
+		let osc1 = new createOscillator(audioCtx, xTuning.note(2), toneTypes[3]);
 		// let osc2 = new createOscillator(audioCtx, notes[3]["C#"], "square");
 		// let osc3 = new createOscillator(audioCtx, notes[3]["E"], "square");
 		arr[0] = osc1.osc;
@@ -150,7 +158,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc2 = new createOscillator(audioCtx, notes[3]["C"], "square");
+		// let osc2 = new createOscillator(audioCtx, notes[3]["C"], "square");
+		let osc2 = new createOscillator(audioCtx, xTuning.note(3), toneTypes[3]);
 		arr[1] = osc2.osc;
 		arr[1].start();
 		background.style.backgroundColor = getRandomColor();
@@ -166,7 +175,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc3 = new createOscillator(audioCtx, notes[3]["D"], "square");
+		// let osc3 = new createOscillator(audioCtx, notes[3]["D"], "square");
+		let osc3 = new createOscillator(audioCtx, xTuning.note(0), toneTypes[3]);
 		arr[2] = osc3.osc;
 		arr[2].start();
 		background.style.backgroundColor = getRandomColor();
@@ -182,7 +192,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc4 = new createOscillator(audioCtx, notes[3]["E"], "square");
+		// let osc4 = new createOscillator(audioCtx, notes[3]["E"], "square");
+		let osc4 = new createOscillator(audioCtx, xTuning.note(1), toneTypes[3]);
 		arr[3] = osc4.osc;
 		arr[3].start();
 		background.style.backgroundColor = getRandomColor();
@@ -198,7 +209,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc5 = new createOscillator(audioCtx, notes[2]["B"], "square");
+		// let osc5 = new createOscillator(audioCtx, notes[2]["B"], "square");
+		let osc5 = new createOscillator(audioCtx, xTuning.note(4), toneTypes[3]);
 		arr[4] = osc5.osc;
 		arr[4].start();
 		background.style.backgroundColor = getRandomColor();

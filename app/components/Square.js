@@ -6,7 +6,7 @@ export default (props) => {
 	     <div className='col-sm-2'>
 	        {
 	            this.props.boxes.map(box => (
-	            	<div className='box' id={{}} />
+	            	<div className='box' id={box.name} />
 	            ))
 	        }
 	    </div>	
