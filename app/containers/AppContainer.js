@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; 
 
 export default function App({children}) {
     return (
@@ -18,7 +18,7 @@ export default function App({children}) {
             </div>
             <hr/> -->*/}
             <form method="POST" action={"/api/howamifeeling"}>
-            <textarea name="feels" id="text-area" autoFocus placeholder="How goes it?" rows="20" cols="20"></textarea>
+            <textarea name="feels" id="text-area" autoFocus placeholder="How goes it?" rows="5" cols="20" maxLength="120"></textarea>
             <hr/>
             <button>PRINT</button>
             </form>

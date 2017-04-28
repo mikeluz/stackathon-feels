@@ -10,7 +10,6 @@ api.get('/howamifeeling', function (req, res, next) {
 });
 
 api.post('/howamifeeling', function (req, res, next) {
-	console.log("in post route");
     var timeStamp = Date();
     var feelFreqs = findValueOfWords(req.body.feels);
     fs.appendFile('feels.txt', (req.body.feels + '\n'));

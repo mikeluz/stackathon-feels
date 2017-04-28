@@ -39,39 +39,6 @@ function makeDistortionCurve(amount) {
 
 // grab html
 let background = document.getElementById("app");
-let one = document.getElementById("one");
-let two = document.getElementById("two");
-let three = document.getElementById("three");
-let four = document.getElementById("four");
-let five = document.getElementById("five");
-let six = document.getElementById("six");
-let seven = document.getElementById("seven");
-let eight = document.getElementById("eight");
-let nine = document.getElementById("nine");
-let ten = document.getElementById("ten");
-let eleven = document.getElementById("eleven");
-let twelve = document.getElementById("twelve");
-let thirteen = document.getElementById("thirteen");
-let fourteen = document.getElementById("fourteen");
-let fifteen = document.getElementById("fifteen");
-let sixteen = document.getElementById("sixteen");
-let seventeen = document.getElementById("seventeen");
-let eighteen = document.getElementById("eighteen");
-let nineteen = document.getElementById("nineteen");
-let twenty = document.getElementById("twenty");
-let twentyone = document.getElementById("twenty-one");
-let twentytwo = document.getElementById("twenty-two");
-let twentythree = document.getElementById("twenty-three");
-let twentyfour = document.getElementById("twenty-four");
-let twentyfive = document.getElementById("twenty-five");
-let twentysix = document.getElementById("twenty-six");
-let twentyseven = document.getElementById("twenty-seven");
-let twentyeight = document.getElementById("twenty-eight");
-let twentynine = document.getElementById("twenty-nine");
-let thirty = document.getElementById("thirty");
-
-console.log("document", document);
-console.log("one", one);
 
 var arr = new Array(8);
 var atonalArr = new Array(8);
@@ -112,6 +79,37 @@ let globalPitchInterval = Math.floor(Math.random() * 100) / 2; // 50
 // this is as if CAPS LOCK is on
 
 window.addEventListener('keydown', (e) => {
+
+	let one = document.getElementById("one");
+	let two = document.getElementById("two");
+	let three = document.getElementById("three");
+	let four = document.getElementById("four");
+	let five = document.getElementById("five");
+	let six = document.getElementById("six");
+	let seven = document.getElementById("seven");
+	let eight = document.getElementById("eight");
+	let nine = document.getElementById("nine");
+	let ten = document.getElementById("ten");
+	let eleven = document.getElementById("eleven");
+	let twelve = document.getElementById("twelve");
+	let thirteen = document.getElementById("thirteen");
+	let fourteen = document.getElementById("fourteen");
+	let fifteen = document.getElementById("fifteen");
+	let sixteen = document.getElementById("sixteen");
+	let seventeen = document.getElementById("seventeen");
+	let eighteen = document.getElementById("eighteen");
+	let nineteen = document.getElementById("nineteen");
+	let twenty = document.getElementById("twenty");
+	let twentyone = document.getElementById("twenty-one");
+	let twentytwo = document.getElementById("twenty-two");
+	let twentythree = document.getElementById("twenty-three");
+	let twentyfour = document.getElementById("twenty-four");
+	let twentyfive = document.getElementById("twenty-five");
+	let twentysix = document.getElementById("twenty-six");
+	let twentyseven = document.getElementById("twenty-seven");
+	let twentyeight = document.getElementById("twenty-eight");
+	let twentynine = document.getElementById("twenty-nine");
+	let thirty = document.getElementById("thirty");
 
 	console.log("in keydown", e.which);
 

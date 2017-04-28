@@ -24,20 +24,8 @@ app.use(bodyParser.json());
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
-app.use('/', function(req, res, next) {
-	console.log("BACKEND");
-	console.log("req", req);
-    var timeStamp = Date();
-    var feelFreqs = findValueOfWords(req.body.feels);
-    fs.appendFile('feels.txt', (req.body.feels + '\n'));
-    res.json("Success");
-});
-
 app.use('/api', require('./server/api'));
 
-// app.use('/', function (req, res, next) {
-// 	res.render('textbox');
-// });
 
 app.use(function (err, req, res, next) {
 	console.error(err.stack);
