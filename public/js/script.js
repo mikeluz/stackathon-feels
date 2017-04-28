@@ -120,8 +120,7 @@ window.addEventListener('keydown', (e) => {
 	const notes = createNoteTable();
 	const linearNotes = createLinearNoteTable();
 	const xTuning = createTuning('xenakis_chrom', 220);
-
-	console.log("xTuning", xTuning);
+	const palaceTuning = createTuning('palace', 220);
 
 	let allowed = true;
 
@@ -226,7 +225,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc6 = new createOscillator(audioCtx, notes[3]["C#"], "square");
+		// let osc6 = new createOscillator(audioCtx, notes[3]["C#"], "square");
+		let osc6 = new createOscillator(audioCtx, palaceTuning.note(1), toneTypes[3]);
 		arr[5] = osc6.osc;
 		arr[5].start();
 		background.style.backgroundColor = getRandomColor();
@@ -242,7 +242,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc7 = new createOscillator(audioCtx, notes[3]["D#"], "square");
+		// let osc7 = new createOscillator(audioCtx, notes[3]["D#"], "square");
+		let osc7 = new createOscillator(audioCtx, palaceTuning.note(2), toneTypes[3]);
 		arr[6] = osc7.osc;
 		arr[6].start();
 		background.style.backgroundColor = getRandomColor();
@@ -258,7 +259,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc8 = new createOscillator(audioCtx, notes[3]["F"], "square");
+		// let osc8 = new createOscillator(audioCtx, notes[3]["F"], "square");
+		let osc8 = new createOscillator(audioCtx, palaceTuning.note(3), toneTypes[3]);
 		arr[7] = osc8.osc;
 		arr[7].start();
 		background.style.backgroundColor = getRandomColor();

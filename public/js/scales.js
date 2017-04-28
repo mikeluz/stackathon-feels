@@ -122,7 +122,6 @@ function createLinearNoteTable() {
   noteFreq[34] = 466.163761518089916;
   noteFreq[35] = 493.883301256124111;
 
-
   noteFreq[36] = 523.251130601197269;
   noteFreq[37] = 554.365261953744192;
   noteFreq[38] = 587.329535834815120;

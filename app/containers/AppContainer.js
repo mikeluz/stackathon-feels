@@ -89,7 +89,7 @@ export default class App extends React.Component {
             <textarea 
             onChange={(evt) => this.handleChange(evt.target.value)}
             name="feels" 
-            id="text-area" 
+            id="text-area"
             autoFocus 
             placeholder="How goes it?"
             value={this.state.text} 
@@ -101,6 +101,8 @@ export default class App extends React.Component {
             </form>
             <button onClick={this.handleClickListen}>LISTEN</button>
             <button onClick={this.handleClickStop}>STOP</button>
+            <br/>
+            <button id="play">DRUMS</button>
             </div>
             <div className='col-sm-2'>
                 <h1 id="face">:(</h1>
