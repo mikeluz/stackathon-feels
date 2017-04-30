@@ -21,6 +21,10 @@ button {
 	width: 100px;
 }
 
+#stop {
+	background-color: red;
+}
+
 #pitch {
 	color: black;
 }

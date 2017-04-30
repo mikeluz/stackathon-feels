@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'; 
 
-// function findValueOfWords(str) {
-//       var arrOfWords = str.split(" ");
-//       var arrOfFreq = arrOfWords.map(word => {
-//         for (let i = 0; i < word.length; i++) {
-// 	        let sum = 0;
-//             sum += (word.charCodeAt(i) * (Math.random() * 8) + arrOfWords.length);
-//             return sum;
-//         }
-//       })
-//       return arrOfFreq;
-// }
-
 function findValueOfWordsByChar(str) {
-      var arrOfWords = str.split(" "); // ["hello", "world"]
+      var arrOfWords = str.split(" ");
       var arrOfFreq = arrOfWords.map(word => {
       	let chord = [];
         for (let i = 0; i < word.length; i++) {
@@ -36,15 +24,17 @@ export default class TextInterface extends React.Component {
             oscArray: [],
             osc: {},
             interval: 0,
-            scale: []
+            scale: [],
+            bpm: 0,
+            beat: {},
+            tone: ""
         }
-        // this.handleClickListen = this.handleClickListen.bind(this);
         this.handleClickListenByChar = this.handleClickListenByChar.bind(this);
-        // this.handleClickListenArp = this.handleClickListenArp.bind(this);
         this.handleClickListenArpByChar = this.handleClickListenArpByChar.bind(this);
         this.handleClickListenChord = this.handleClickListenChord.bind(this);
         this.handleClickStop = this.handleClickStop.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBeat = this.handleBeat.bind(this);
     }
 
     componentWillMount() {
@@ -84,16 +74,6 @@ export default class TextInterface extends React.Component {
         console.log("state", this.state);
     }
 
-    // handleClickListen() {
-    //     this.state.oscArray = this.state.feels.map((freq, i) => {
-    //         var osc = new createOscillator(audioCtx, freq, toneTypes[0]);
-    //         setTimeout(() => {
-    //             osc.osc.start();
-    //         }, (100 + (i * 400)));
-    //         return osc;
-    //     });
-    // }
-
     handleClickListenByChar() {
     	var feelsByChar = this.state.feels.reduce((acc, curr) => {
 	      	return acc.concat(curr);
@@ -119,27 +99,31 @@ export default class TextInterface extends React.Component {
             return oscChord;
         });
         this.state.oscArray.forEach((chord, indexOne) => {
-        	var currentTime = indexOne * 600;
+        	var currentTime = indexOne * 1000;
         	chord.forEach((osc, indexTwo) => {
 	        	setTimeout(() => {
 		        	osc.osc.start();
 		        	if (indexOne > 0) {
 		        		setTimeout(() => {
 			        		this.state.oscArray[indexOne - 1].forEach(osc => {
-			        			console.log("in Stop", osc);
 			        			osc.osc.stop();
-			        		}, currentTime);
+			        		}, audioCtx.currentTime + currentTime);
 		        		});
 		        	}
-	            }, currentTime);
+	            }, audioCtx.currentTime + currentTime);
         	});
         });
     }
 
-    // handleClickListenArp() {
+	// normal timeouts -- gives it portamento! //
+	/////////////////////////////////////////////
+    // handleClickListenArpByChar() {
+    // 	var feelsByChar = this.state.feels.reduce((acc, curr) => {
+	   //    	return acc.concat(curr);
+	   //  });
     //     this.state.osc.osc.start();
     //     this.state.interval = setInterval(() => {
-    //         this.state.osc.osc.frequency.value = this.state.feels.pop();
+    //         this.state.osc.osc.frequency.value = this.state.scale[Math.floor(feelsByChar.shift() / 3)];
     //     }, 400)
     // };
 
@@ -149,12 +133,15 @@ export default class TextInterface extends React.Component {
 	    });
         this.state.osc.osc.start();
         this.state.interval = setInterval(() => {
-            this.state.osc.osc.frequency.value = this.state.scale[Math.floor(feelsByChar.shift() / 3)];
+            this.state.osc.osc.frequency.setValueAtTime(this.state.scale[Math.floor(feelsByChar.shift() / 3)], audioCtx.currentTime);
         }, 400)
     };
 
     handleClickStop() {
-    	console.log("oscArray on state", this.state.oscArray);
+    	console.log("beat", this.state.beat);
+        if (this.state.beat.osc) {
+        	this.state.beat.osc.stop();
+        }
         this.state.oscArray.forEach(osc => {
         	if (Array.isArray(osc)) {
         		osc.forEach(osc => {
@@ -165,18 +152,43 @@ export default class TextInterface extends React.Component {
         	}
         });
         clearInterval(this.state.interval);
-        this.state.osc.osc.stop();
-        let osc = new createOscillator(audioCtx, this.state.feel, toneTypes[2]);
-        this.setState({
-            osc: osc
-        })
+        if (this.state.osc.osc) {
+        	this.state.osc.osc.stop();
+	        let osc = new createOscillator(audioCtx, this.state.feel, toneTypes[0]);
+	        this.setState({
+	            osc: osc
+	        })
+        }
+    }
+
+    handleBeat() {
+    	var drum = new createOscillator(audioCtx, 220, toneTypes[0]);
+    	this.setState({
+    		beat: drum
+    	})
+    	drum.osc.start();
+    	var bool = false;
+    	setInterval(() => {
+    		if (!bool) {
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[24], audioCtx.currentTime);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[26], audioCtx.currentTime + 0.1);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[20], audioCtx.currentTime + .2);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + .3);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[23], audioCtx.currentTime + .4);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + .5);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[26], audioCtx.currentTime + .6);
+		    	drum.osc.frequency.setValueAtTime(this.state.scale[23], audioCtx.currentTime + .7);
+    		} else {
+		    	drum.osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+    		}
+	    	bool = !bool;
+    	}, 800)
     }
 
     render() {
         return (
         <div id='main'>
         <div id="text-interface">
-        <br />
         <h1 id="headline">FEELS</h1>
             <div className='row'>
                 <div className='col-sm-2'>
@@ -200,21 +212,22 @@ export default class TextInterface extends React.Component {
                 <hr/>
                 <div id="volume">
                     <input id="volume" className= "form-control" type="range" min="0.0" max="0.8" step="0.01"
-                        defaultValue="0.25" list="volumes" name="volume" onChange={(evt) => this.handleChangeVolume(evt)}/>
+                        defaultValue={gainNode.gain.value} list="volumes" name="volume" onChange={(evt) => this.handleChangeVolume(evt)}/>
                 </div>
                 <div id="pitch">
                     <input id="pitch" className= "form-control" type="range" min="200" max="1000" step="10"
                         defaultValue={this.state.osc.osc.frequency.value} list="volumes" name="volume" onChange={(evt) => this.handleChangePitch(evt)}/>
                 </div>
                 <br/>
-                <button>PRINT</button>
+                {/*<button>PRINT</button>*/}
                 </form>
-                <button onClick={this.handleClickListenByChar}>LISTEN</button>
-                <button onClick={this.handleClickListenChord}>CHORDS</button>
                 <button onClick={this.handleClickListenArpByChar}>ARP</button>
-                <button onClick={this.handleClickStop}>STOP</button>
                 <br/>
-                <button id="play">BEAT</button>
+                <button onClick={this.handleClickListenByChar}>SUS</button>
+                <button id="stop" onClick={this.handleClickStop}>STOP</button>
+                <button onClick={this.handleClickListenChord}>CHORDS</button>
+                <button onClick={this.handleBeat}>FUN</button>
+                <br/>
                 </div>
                 <div className='col-sm-2'>
                     <h1 id="sad-face">:(</h1>
