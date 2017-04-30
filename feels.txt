@@ -13,3 +13,13 @@ I feel fine.
 How is it going?
 How is it going?
 asfdasadsfadddfadsfashdglwuoopqxnurbchgwl
+I'm doing very well thanks
+Yes it's' good
+map calls a provided callback function once for each element in an array, in order, and constructs a new array from the results. callback is invoked only for indexes of the array which have assigned values, including undefined. It is not called for missing elements of the array (that is, indexes that have never been set, which have been deleted or which have never been assigned a value).
+
+
+
+That's what I"mt alking about.
+
+
+There is a thing called ca re

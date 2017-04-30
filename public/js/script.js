@@ -5,37 +5,8 @@ function createSynthesizer() {
 var audioCtx = createSynthesizer();
 
 //set up the different audio nodes we will use for the app
-var distortion = audioCtx.createWaveShaper();
 var gainNode = audioCtx.createGain();
-var biquadFilter = audioCtx.createBiquadFilter();
-
-function makeDistortionCurve(amount) {
-  var k = typeof amount === 'number' ? amount : 50,
-    n_samples = 44100,
-    curve = new Float32Array(n_samples),
-    deg = Math.PI / 180,
-    i = 0,
-    x;
-  for ( ; i < n_samples; ++i ) {
-    x = i * 2 / n_samples - 1;
-    curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-  }
-  return curve;
-}
-
-// distortion settings
-// distortion.curve = makeDistortionCurve(500);
-// distortion.oversample = '4x';
-
-// filter settings
-// biquadFilter.type = "allpass";
-// biquadFilter.frequency.value = 1000;
-// biquadFilter.gain.value = 25;
-
-// volume control
-// const changeVolume = event => gainNode.gain.value = volumeControl.value;
-// let volumeControl = document.querySelector("input[name='volume']");
-// volumeControl.addEventListener("change", changeVolume, false);
+gainNode.gain.value = 0.1;
 
 // grab background
 let background = document.getElementById("app");
@@ -51,35 +22,16 @@ function createOscillator (audioCtx, freq, type) {
 	this.osc.type = type;
 
 	this.osc.connect(gainNode);
-	// distortion.connect(biquadFilter);
-	// biquadFilter.connect(gainNode);
 	gainNode.connect(audioCtx.destination);
-
-	// var now = audioCtx.currentTime;
-
-	// gainNode.gain.setValueAtTime(1, now);
-	// gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
 }
 
-createOscillator.prototype.setFreq = function(freq) {
-	this.freq = freq;
-};
-
-createOscillator.prototype.setType = function(type) {
-	this.type = type;
-};
-
 const toneTypes = ["sine", "square", "triangle", "sawtooth"];
-
-// global volume and pitch values
-gainNode.gain.value = 0.08;
-let globalPitchInterval = Math.floor(Math.random() * 100) / 2; // 50
 
 /////////////////////////
 // create keyboard events
 /////////////////////////
 
-// keydown -- activates oscillator, need to handle "can't start more than once" error
+// keydown -- activates oscillator
 // this is as if CAPS LOCK is on
 
 window.addEventListener('keydown', (e) => {
@@ -126,6 +78,7 @@ window.addEventListener('keydown', (e) => {
 
 	// basic keyboard -- tone starts and stops with keypress //
 	///////////////////////////////////////////////////////////
+
 	// 'a' on keyboard -- osc1
 	if (e.which === 65) {
 		if (e.repeat != undefined) {
@@ -135,14 +88,8 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc1 = new createOscillator(audioCtx, notes[2]["A"], "square");
 		let osc1 = new createOscillator(audioCtx, xTuning.note(2), toneTypes[3]);
-		// let osc2 = new createOscillator(audioCtx, notes[3]["C#"], "square");
-		// let osc3 = new createOscillator(audioCtx, notes[3]["E"], "square");
 		arr[0] = osc1.osc;
-		// osc1.osc.start();
-		// osc2.osc.start();
-		// osc3.osc.start();
 		arr[0].start();
 		background.style.backgroundColor = getRandomColor();
 		one.style.backgroundColor = getRandomColor();
@@ -157,7 +104,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc2 = new createOscillator(audioCtx, notes[3]["C"], "square");
 		let osc2 = new createOscillator(audioCtx, xTuning.note(3), toneTypes[3]);
 		arr[1] = osc2.osc;
 		arr[1].start();
@@ -174,7 +120,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc3 = new createOscillator(audioCtx, notes[3]["D"], "square");
 		let osc3 = new createOscillator(audioCtx, xTuning.note(0), toneTypes[3]);
 		arr[2] = osc3.osc;
 		arr[2].start();
@@ -191,7 +136,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc4 = new createOscillator(audioCtx, notes[3]["E"], "square");
 		let osc4 = new createOscillator(audioCtx, xTuning.note(1), toneTypes[3]);
 		arr[3] = osc4.osc;
 		arr[3].start();
@@ -208,7 +152,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc5 = new createOscillator(audioCtx, notes[2]["B"], "square");
 		let osc5 = new createOscillator(audioCtx, xTuning.note(4), toneTypes[3]);
 		arr[4] = osc5.osc;
 		arr[4].start();
@@ -225,7 +168,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc6 = new createOscillator(audioCtx, notes[3]["C#"], "square");
 		let osc6 = new createOscillator(audioCtx, palaceTuning.note(1), toneTypes[3]);
 		arr[5] = osc6.osc;
 		arr[5].start();
@@ -242,7 +184,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc7 = new createOscillator(audioCtx, notes[3]["D#"], "square");
 		let osc7 = new createOscillator(audioCtx, palaceTuning.note(2), toneTypes[3]);
 		arr[6] = osc7.osc;
 		arr[6].start();
@@ -259,7 +200,6 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		// let osc8 = new createOscillator(audioCtx, notes[3]["F"], "square");
 		let osc8 = new createOscillator(audioCtx, palaceTuning.note(3), toneTypes[3]);
 		arr[7] = osc8.osc;
 		arr[7].start();
@@ -634,6 +574,18 @@ window.addEventListener('keydown', (e) => {
 		one.style.backgroundColor = getRandomColor();
 	}
 
+	if (e.which === 91) {
+		e.preventDefault();
+	}
+
+	// tab bar to randomly sequence
+	if (e.which === 9) {
+		e.preventDefault();
+		arr.forEach((osc, i) => {
+			sequencerRand.call(null, osc, linearNotes, i);
+		})
+	}
+
 });
 
 window.addEventListener('keypress', (e) => {
@@ -644,125 +596,125 @@ window.addEventListener('keypress', (e) => {
 	// atonal keyboard -- osc starts with press and contines //
 	// values are option+key //////////////////////////////////
 	///////////////////////////////////////////////////////////
-	if (e.which === 229) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[0] = osc1.osc;
-		atonalArr[0].start();
-		background.style.backgroundColor = getRandomColor();
-		one.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 229) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[0] = osc1.osc;
+	// 	atonalArr[0].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	one.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 223) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[1] = osc1.osc;
-		atonalArr[1].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 223) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[1] = osc1.osc;
+	// 	atonalArr[1].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 8706) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[2] = osc1.osc;
-		atonalArr[2].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 8706) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[2] = osc1.osc;
+	// 	atonalArr[2].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 402) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[3] = osc1.osc;
-		atonalArr[3].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 402) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[3] = osc1.osc;
+	// 	atonalArr[3].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 8710) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[0] = osc1.osc;
-		atonalArr[0].start();
-		background.style.backgroundColor = getRandomColor();
-		one.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 8710) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[0] = osc1.osc;
+	// 	atonalArr[0].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	one.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 730) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[1] = osc1.osc;
-		atonalArr[1].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 730) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[1] = osc1.osc;
+	// 	atonalArr[1].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 172) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[2] = osc1.osc;
-		atonalArr[2].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 172) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[2] = osc1.osc;
+	// 	atonalArr[2].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
-	if (e.which === 8230) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-		atonalArr[3] = osc1.osc;
-		atonalArr[3].start();
-		background.style.backgroundColor = getRandomColor();
-		two.style.backgroundColor = getRandomColor();
-	}
+	// if (e.which === 8230) {
+	// 	if (e.repeat != undefined) {
+	// 		allowed = !e.repeat;
+	// 	}
+	// 	if (!allowed) {
+	// 		return;
+	// 	}
+	// 	allowed = false;
+	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
+	// 	atonalArr[3] = osc1.osc;
+	// 	atonalArr[3].start();
+	// 	background.style.backgroundColor = getRandomColor();
+	// 	two.style.backgroundColor = getRandomColor();
+	// }
 
 	// // q
 	// if (e.which === 113) {
@@ -811,6 +763,37 @@ let allowed = true;
 
 // keyup -- deactivates oscillator
 window.addEventListener('keyup', (e) => {
+
+	let one = document.getElementById("one");
+	let two = document.getElementById("two");
+	let three = document.getElementById("three");
+	let four = document.getElementById("four");
+	let five = document.getElementById("five");
+	let six = document.getElementById("six");
+	let seven = document.getElementById("seven");
+	let eight = document.getElementById("eight");
+	let nine = document.getElementById("nine");
+	let ten = document.getElementById("ten");
+	let eleven = document.getElementById("eleven");
+	let twelve = document.getElementById("twelve");
+	let thirteen = document.getElementById("thirteen");
+	let fourteen = document.getElementById("fourteen");
+	let fifteen = document.getElementById("fifteen");
+	let sixteen = document.getElementById("sixteen");
+	let seventeen = document.getElementById("seventeen");
+	let eighteen = document.getElementById("eighteen");
+	let nineteen = document.getElementById("nineteen");
+	let twenty = document.getElementById("twenty");
+	let twentyone = document.getElementById("twenty-one");
+	let twentytwo = document.getElementById("twenty-two");
+	let twentythree = document.getElementById("twenty-three");
+	let twentyfour = document.getElementById("twenty-four");
+	let twentyfive = document.getElementById("twenty-five");
+	let twentysix = document.getElementById("twenty-six");
+	let twentyseven = document.getElementById("twenty-seven");
+	let twentyeight = document.getElementById("twenty-eight");
+	let twentynine = document.getElementById("twenty-nine");
+	let thirty = document.getElementById("thirty");
 
 	console.log("in keyup", e.which);
 
@@ -1007,22 +990,15 @@ window.addEventListener('keypress', (e) => {
 	// left bracket to decrease pitch
 	if (e.which === 91) {
 		arr.forEach(osc => {
-			osc.frequency.value -= globalPitchInterval;
+			osc.frequency.value -= (Math.floor(Math.random() * 100) / 2);
 		});
 	}
 
 	// right bracket to increase pitch
 	if (e.which === 93) {
 		arr.forEach(osc => {
-			osc.frequency.value += globalPitchInterval;
+			osc.frequency.value += (Math.floor(Math.random() * 100) / 2);
 		});
-	}
-
-	// space bar to stop
-	if (e.which === 32) {
-		arr.forEach((osc, i) => {
-			sequencerRand.call(null, osc, linearNotes, i);
-		})
 	}
 
 	// enter key

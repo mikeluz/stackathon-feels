@@ -12,7 +12,7 @@ function findValueOfWords(str) {
   var arrOfFreq = arrOfWords.map(word => {
     for (let i = 0; i < word.length; i++) {
       let sum = 0;
-    	sum += (word.charCodeAt(i) * (Math.random() * 8) + arrOfWords.length);
+    	sum += (word.charCodeAt(i) * (Math.random() * 10) + arrOfWords.length);
     	return sum;
     }
   })
@@ -26,4 +26,4 @@ function reduceValues(freqs) {
   return (masterFreq / freqs.length);
 }
 
-module.exports = {findValueOfWords, reduceValues};
+// module.exports = {findValueOfWords, reduceValues};

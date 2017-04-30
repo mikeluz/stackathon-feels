@@ -4,6 +4,37 @@
 	width: 50px;
 }
 
+li {
+    list-style-type: none;
+    display: inline;
+}
+
+ul {
+    left-margin: auto;
+    right-margin: auto;
+    padding-left: 0px;
+}
+
+button {
+	background-color: white;
+	height: 50px;
+	width: 100px;
+}
+
+#pitch {
+	color: black;
+}
+
+#volume {
+/*	height: 100px;
+	width: 5px;*/
+    /*-webkit-appearance: slider-vertical; /* WebKit */*/
+    width: 2px;
+    height: 10px;
+    padding: 0 5px;
+    text-align: center;
+}
+
 html {
 	background-color: black;
 }
@@ -12,7 +43,12 @@ html {
 	color: white;
 }
 
-#face {
+#happy-face {
+	color: white;
+    transform: rotate(90deg);
+}
+
+#sad-face {
 	color: white;
     transform: rotate(90deg);
 }
@@ -33,7 +69,7 @@ html {
 #main {
 	position: relative;
 	margin: 10px auto;
-	height: 1200px;
+	height: 1600px;
 	width: 1000px;
 	padding-top: 40px;
 }
