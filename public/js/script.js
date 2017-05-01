@@ -73,8 +73,10 @@ window.addEventListener('keydown', (e) => {
 	const linearNotes = createLinearNoteTable();
 	const xTuning = createTuning('xenakis_chrom', 220);
 	const palaceTuning = createTuning('palace', 220);
-	// const tone = toneTypes[Math.floor((Math.random() * 10) / 2.5)];
-	const tone = toneTypes[0];
+	const partchTuning = createTuning('partch_41', 220);
+	const tone = toneTypes[Math.floor((Math.random() * 10) / 2.5)];
+	// const tone = toneTypes[0];
+	const note = linearNotes[Math.floor(Math.random() * 60)];
 
 	let allowed = true;
 
@@ -90,7 +92,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc1 = new createOscillator(audioCtx, xTuning.note(0), tone);
+		let osc1 = new createOscillator(audioCtx, note, tone);
 		arr[0] = osc1.osc;
 		arr[0].start();
 		background.style.backgroundColor = getRandomColor();
@@ -106,7 +108,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc2 = new createOscillator(audioCtx, xTuning.note(1), tone);
+		let osc2 = new createOscillator(audioCtx, note, tone);
 		arr[1] = osc2.osc;
 		arr[1].start();
 		background.style.backgroundColor = getRandomColor();
@@ -122,7 +124,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc3 = new createOscillator(audioCtx, xTuning.note(2), tone);
+		let osc3 = new createOscillator(audioCtx, note, tone);
 		arr[2] = osc3.osc;
 		arr[2].start();
 		background.style.backgroundColor = getRandomColor();
@@ -138,7 +140,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc4 = new createOscillator(audioCtx, xTuning.note(3), tone);
+		let osc4 = new createOscillator(audioCtx, note, tone);
 		arr[3] = osc4.osc;
 		arr[3].start();
 		background.style.backgroundColor = getRandomColor();
@@ -154,7 +156,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc5 = new createOscillator(audioCtx, xTuning.note(4), tone);
+		let osc5 = new createOscillator(audioCtx, note, tone);
 		arr[4] = osc5.osc;
 		arr[4].start();
 		background.style.backgroundColor = getRandomColor();
@@ -170,7 +172,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc6 = new createOscillator(audioCtx, xTuning.note(5), tone);
+		let osc6 = new createOscillator(audioCtx, note, tone);
 		arr[5] = osc6.osc;
 		arr[5].start();
 		background.style.backgroundColor = getRandomColor();
@@ -186,7 +188,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc7 = new createOscillator(audioCtx, xTuning.note(6), tone);
+		let osc7 = new createOscillator(audioCtx, note, tone);
 		arr[6] = osc7.osc;
 		arr[6].start();
 		background.style.backgroundColor = getRandomColor();
@@ -202,7 +204,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc8 = new createOscillator(audioCtx, xTuning.note(7), tone);
+		let osc8 = new createOscillator(audioCtx, note, tone);
 		arr[7] = osc8.osc;
 		arr[7].start();
 		background.style.backgroundColor = getRandomColor();
@@ -218,7 +220,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc9 = new createOscillator(audioCtx, palaceTuning.note(0), tone);
+		let osc9 = new createOscillator(audioCtx, note, tone);
 		arr[8] = osc9.osc;
 		arr[8].start();
 		background.style.backgroundColor = getRandomColor();
@@ -234,7 +236,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc10 = new createOscillator(audioCtx, palaceTuning.note(1), tone);
+		let osc10 = new createOscillator(audioCtx, note, tone);
 		arr[9] = osc10.osc;
 		arr[9].start();
 		background.style.backgroundColor = getRandomColor();
@@ -250,7 +252,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, palaceTuning.note(2), tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[10] = osc11.osc;
 		arr[10].start();
 		background.style.backgroundColor = getRandomColor();
@@ -266,7 +268,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, palaceTuning.note(3), tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[11] = osc12.osc;
 		arr[11].start();
 		background.style.backgroundColor = getRandomColor();
@@ -282,7 +284,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc9 = new createOscillator(audioCtx, palaceTuning.note(4), tone);
+		let osc9 = new createOscillator(audioCtx, note, tone);
 		arr[8] = osc9.osc;
 		arr[8].start();
 		background.style.backgroundColor = getRandomColor();
@@ -298,7 +300,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc10 = new createOscillator(audioCtx, palaceTuning.note(5), tone);
+		let osc10 = new createOscillator(audioCtx, note, tone);
 		arr[9] = osc10.osc;
 		arr[9].start();
 		background.style.backgroundColor = getRandomColor();
@@ -314,7 +316,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, palaceTuning.note(6), tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[10] = osc11.osc;
 		arr[10].start();
 		background.style.backgroundColor = getRandomColor();
@@ -330,7 +332,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, palaceTuning.note(7), tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[11] = osc12.osc;
 		arr[11].start();
 		background.style.backgroundColor = getRandomColor();
@@ -346,7 +348,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[4]["C"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[12] = osc11.osc;
 		arr[12].start();
 		background.style.backgroundColor = getRandomColor();
@@ -362,7 +364,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[4]["D"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[13] = osc12.osc;
 		arr[13].start();
 		background.style.backgroundColor = getRandomColor();
@@ -378,7 +380,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[4]["D#"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[14] = osc11.osc;
 		arr[14].start();
 		background.style.backgroundColor = getRandomColor();
@@ -394,7 +396,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[4]["C#"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[15] = osc12.osc;
 		arr[15].start();
 		background.style.backgroundColor = getRandomColor();
@@ -410,7 +412,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[4]["F"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[16] = osc11.osc;
 		arr[16].start();
 		background.style.backgroundColor = getRandomColor();
@@ -426,7 +428,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[3]["E"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[17] = osc12.osc;
 		arr[17].start();
 		background.style.backgroundColor = getRandomColor();
@@ -442,7 +444,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[3]["G"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[18] = osc11.osc;
 		arr[18].start();
 		background.style.backgroundColor = getRandomColor();
@@ -458,7 +460,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[3]["A#"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[19] = osc12.osc;
 		arr[19].start();
 		background.style.backgroundColor = getRandomColor();
@@ -474,7 +476,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[3]["F"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[20] = osc11.osc;
 		arr[20].start();
 		background.style.backgroundColor = getRandomColor();
@@ -490,7 +492,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[2]["B"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[21] = osc12.osc;
 		arr[21].start();
 		background.style.backgroundColor = getRandomColor();
@@ -506,7 +508,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[3]["G"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[22] = osc11.osc;
 		arr[22].start();
 		background.style.backgroundColor = getRandomColor();
@@ -522,7 +524,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[3]["E"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[23] = osc12.osc;
 		arr[23].start();
 		background.style.backgroundColor = getRandomColor();
@@ -538,7 +540,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[2]["A#"], tone);
+		let osc11 = new createOscillator(audioCtx, note, tone);
 		arr[24] = osc11.osc;
 		arr[24].start();
 		background.style.backgroundColor = getRandomColor();
@@ -554,26 +556,11 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[3]["B"], tone);
+		let osc12 = new createOscillator(audioCtx, note, tone);
 		arr[25] = osc12.osc;
 		arr[25].start();
 		background.style.backgroundColor = getRandomColor();
 		thirty.style.backgroundColor = getRandomColor();
-	}
-
-	if (e.which === 1) {
-		if (e.repeat != undefined) {
-			allowed = !e.repeat;
-		}
-		if (!allowed) {
-			return;
-		}
-		allowed = false;
-		let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), tone);
-		arr[0] = osc1.osc;
-		arr[0].start();
-		background.style.backgroundColor = getRandomColor();
-		one.style.backgroundColor = getRandomColor();
 	}
 
 	// tab to randomly sequence

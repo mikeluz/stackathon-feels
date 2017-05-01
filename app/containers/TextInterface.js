@@ -271,7 +271,7 @@ export default class TextInterface extends React.Component {
                         defaultValue={gainNode.gain.value} list="volumes" name="volume" onChange={(evt) => this.handleChangeVolume(evt)}/>
                 </div>
                 <div id="pitch">
-                	<label>Pitch</label>
+                	<label>Pitch (Arp Only)</label>
                     <input id="pitch" className= "form-control" type="range" min="200" max="1000" step="10"
                         defaultValue={this.state.osc.osc.frequency.value} list="volumes" name="pitch" onChange={(evt) => this.handleChangePitch(evt)}/>
                 </div>
