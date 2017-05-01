@@ -73,7 +73,8 @@ window.addEventListener('keydown', (e) => {
 	const linearNotes = createLinearNoteTable();
 	const xTuning = createTuning('xenakis_chrom', 220);
 	const palaceTuning = createTuning('palace', 220);
-	const tone = toneTypes[Math.floor((Math.random() * 10) / 2.5)];
+	// const tone = toneTypes[Math.floor((Math.random() * 10) / 2.5)];
+	const tone = toneTypes[0];
 
 	let allowed = true;
 
@@ -89,7 +90,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc1 = new createOscillator(audioCtx, xTuning.note(2), tone);
+		let osc1 = new createOscillator(audioCtx, xTuning.note(0), tone);
 		arr[0] = osc1.osc;
 		arr[0].start();
 		background.style.backgroundColor = getRandomColor();
@@ -105,7 +106,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc2 = new createOscillator(audioCtx, xTuning.note(3), tone);
+		let osc2 = new createOscillator(audioCtx, xTuning.note(1), tone);
 		arr[1] = osc2.osc;
 		arr[1].start();
 		background.style.backgroundColor = getRandomColor();
@@ -121,7 +122,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc3 = new createOscillator(audioCtx, xTuning.note(0), tone);
+		let osc3 = new createOscillator(audioCtx, xTuning.note(2), tone);
 		arr[2] = osc3.osc;
 		arr[2].start();
 		background.style.backgroundColor = getRandomColor();
@@ -137,7 +138,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc4 = new createOscillator(audioCtx, xTuning.note(1), tone);
+		let osc4 = new createOscillator(audioCtx, xTuning.note(3), tone);
 		arr[3] = osc4.osc;
 		arr[3].start();
 		background.style.backgroundColor = getRandomColor();
@@ -169,7 +170,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc6 = new createOscillator(audioCtx, palaceTuning.note(1), tone);
+		let osc6 = new createOscillator(audioCtx, xTuning.note(5), tone);
 		arr[5] = osc6.osc;
 		arr[5].start();
 		background.style.backgroundColor = getRandomColor();
@@ -185,7 +186,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc7 = new createOscillator(audioCtx, palaceTuning.note(2), tone);
+		let osc7 = new createOscillator(audioCtx, xTuning.note(6), tone);
 		arr[6] = osc7.osc;
 		arr[6].start();
 		background.style.backgroundColor = getRandomColor();
@@ -201,7 +202,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc8 = new createOscillator(audioCtx, palaceTuning.note(3), tone);
+		let osc8 = new createOscillator(audioCtx, xTuning.note(7), tone);
 		arr[7] = osc8.osc;
 		arr[7].start();
 		background.style.backgroundColor = getRandomColor();
@@ -217,7 +218,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc9 = new createOscillator(audioCtx, notes[2]["G"], tone);
+		let osc9 = new createOscillator(audioCtx, palaceTuning.note(0), tone);
 		arr[8] = osc9.osc;
 		arr[8].start();
 		background.style.backgroundColor = getRandomColor();
@@ -233,7 +234,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc10 = new createOscillator(audioCtx, notes[2]["G#"], tone);
+		let osc10 = new createOscillator(audioCtx, palaceTuning.note(1), tone);
 		arr[9] = osc10.osc;
 		arr[9].start();
 		background.style.backgroundColor = getRandomColor();
@@ -249,7 +250,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[2]["A#"], tone);
+		let osc11 = new createOscillator(audioCtx, palaceTuning.note(2), tone);
 		arr[10] = osc11.osc;
 		arr[10].start();
 		background.style.backgroundColor = getRandomColor();
@@ -265,7 +266,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[2]["F#"], tone);
+		let osc12 = new createOscillator(audioCtx, palaceTuning.note(3), tone);
 		arr[11] = osc12.osc;
 		arr[11].start();
 		background.style.backgroundColor = getRandomColor();
@@ -281,7 +282,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc9 = new createOscillator(audioCtx, notes[3]["G#"], tone);
+		let osc9 = new createOscillator(audioCtx, palaceTuning.note(4), tone);
 		arr[8] = osc9.osc;
 		arr[8].start();
 		background.style.backgroundColor = getRandomColor();
@@ -297,7 +298,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc10 = new createOscillator(audioCtx, notes[3]["A"], tone);
+		let osc10 = new createOscillator(audioCtx, palaceTuning.note(5), tone);
 		arr[9] = osc10.osc;
 		arr[9].start();
 		background.style.backgroundColor = getRandomColor();
@@ -313,7 +314,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc11 = new createOscillator(audioCtx, notes[3]["G"], tone);
+		let osc11 = new createOscillator(audioCtx, palaceTuning.note(6), tone);
 		arr[10] = osc11.osc;
 		arr[10].start();
 		background.style.backgroundColor = getRandomColor();
@@ -329,7 +330,7 @@ window.addEventListener('keydown', (e) => {
 			return;
 		}
 		allowed = false;
-		let osc12 = new createOscillator(audioCtx, notes[3]["B"], tone);
+		let osc12 = new createOscillator(audioCtx, palaceTuning.note(7), tone);
 		arr[11] = osc12.osc;
 		arr[11].start();
 		background.style.backgroundColor = getRandomColor();
@@ -584,177 +585,6 @@ window.addEventListener('keydown', (e) => {
 	}
 
 });
-
-window.addEventListener('keypress', (e) => {
-
-	let allowed = true;
-
-	///////////////////////////////////////////////////////////
-	// atonal keyboard -- osc starts with press and contines //
-	// values are option+key //////////////////////////////////
-	///////////////////////////////////////////////////////////
-	// if (e.which === 229) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[0] = osc1.osc;
-	// 	atonalArr[0].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	one.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 223) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[1] = osc1.osc;
-	// 	atonalArr[1].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 8706) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[2] = osc1.osc;
-	// 	atonalArr[2].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 402) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[3] = osc1.osc;
-	// 	atonalArr[3].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 8710) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[0] = osc1.osc;
-	// 	atonalArr[0].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	one.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 730) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[1] = osc1.osc;
-	// 	atonalArr[1].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 172) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[2] = osc1.osc;
-	// 	atonalArr[2].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// if (e.which === 8230) {
-	// 	if (e.repeat != undefined) {
-	// 		allowed = !e.repeat;
-	// 	}
-	// 	if (!allowed) {
-	// 		return;
-	// 	}
-	// 	allowed = false;
-	// 	let osc1 = new createOscillator(audioCtx, Math.floor(Math.random() * 1000), "sine");
-	// 	atonalArr[3] = osc1.osc;
-	// 	atonalArr[3].start();
-	// 	background.style.backgroundColor = getRandomColor();
-	// 	two.style.backgroundColor = getRandomColor();
-	// }
-
-	// // q
-	// if (e.which === 113) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[0].frequency.value += 10;
-	// }
-	// // z
-	// if (e.which === 122) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[1].frequency.value -= 10;
-	// }
-	// // w
-	// if (e.which === 119) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[2].frequency.value += 10;
-	// }
-	// // x
-	// if (e.which === 120) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[3].frequency.value -= 10;
-	// }
-	// // e
-	// if (e.which === 101) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[4].frequency.value += 10;
-	// }
-	// // c
-	// if (e.which === 99) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[5].frequency.value -= 10;
-	// }
-	// // r
-	// if (e.which === 114) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[6].frequency.value += 10;
-	// }
-	// // v
-	// if (e.which === 118) {
-	// 	one.style.backgroundColor = getRandomColor();
-	// 	arr[7].frequency.value -= 10;
-	// }
-
-})
 
 let allowed = true;
 

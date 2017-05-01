@@ -8,6 +8,7 @@ export default function App () {
         return ( <div>
         <div id='main'>
         <h1 id="headline">FEELS</h1>
+        <h2>Hear Yourself Think</h2>
         <Menu />
             <div id="boxes">
             <div className='row'>

@@ -20,10 +20,13 @@ function findValueOfWords(str) {
 }
 
 function reduceValues(freqs) {
-  var masterFreq = freqs.reduce((acc, curr, i) => {
+      var feels = freqs.reduce((acc, curr) => {
+          return acc.concat(curr);
+      });
+  var masterFreq = feels.reduce((acc, curr, i) => {
     return acc + curr;
   });
-  return (masterFreq / freqs.length);
+  return (masterFreq / feels.length);
 }
 
 // module.exports = {findValueOfWords, reduceValues};
