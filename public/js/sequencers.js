@@ -233,3 +233,14 @@
 			osc.frequency.value = notes[58];
 		}, 4400);
 	}
+
+	function arpeggiator(context, numOfOsc, notes, rel) {
+			var oscArr = [];
+			for (let i = 0; i < numOfOsc; i++) {
+				let osc = new createOscillator(context, notes[i * Math.floor(Math.random() * 10)], "saw");
+			}
+			oscArr.forEach((osc, i)) => {
+				osc.start();
+	    	osc.frequency.setValueAtTime(notes[i * Math.floor(Math.random() * 10) rel], audioCtx.currentTime + (i*100*rel));
+			})
+	}

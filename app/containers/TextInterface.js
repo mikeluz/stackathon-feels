@@ -37,6 +37,33 @@ export default class TextInterface extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFun = this.handleFun.bind(this);
         this.handleTone = this.handleTone.bind(this);
+        this.randomArpeggiator = this.randomArpeggiator.bind(this);
+    }
+
+    randomArpeggiator(context, numOfOsc, notes, rel, length) {
+        var oscArr = [];
+        for (let i = 0; i < numOfOsc; i++) {
+            let osc = new createOscillator(context, notes[i * Math.floor(Math.random() * 10)], this.state.tone);
+            oscArr.push(osc);
+        }
+        oscArr.forEach((osc, i) => {
+            osc.osc.start();
+            osc.osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (i*100));
+        });
+        for (let k = 1; k <= length; k++) {
+            if (k === length) {
+                setTimeout(() => {
+                    oscArr.forEach((osc, i) => {
+                        osc.osc.stop();
+                    });
+                }, this.state.bpm * k);
+            }
+            setTimeout(() => {
+                oscArr.forEach((osc, i) => {
+                    osc.osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (i*100));
+                });
+            }, this.state.bpm * k)
+        }
     }
 
     componentWillMount() {
@@ -54,7 +81,6 @@ export default class TextInterface extends React.Component {
     }
 
     handleChange(text) {
-        // let feels = findValueOfWords(text);
         let feels = findValueOfWordsByChar(text);
         let feel = reduceValues(feels);
         this.setState({
@@ -178,53 +204,7 @@ export default class TextInterface extends React.Component {
     }
 
     handleFun() {
-    	var fun = new createOscillator(audioCtx, 220, this.state.tone);
-    	var harm = new createOscillator(audioCtx, 293.664767917407560, this.state.tone);
-    	this.setState({
-    		fun: fun,
-    		harm: harm
-    	})
-    	fun.osc.start();
-    	harm.osc.start();
-    	var bool = false;
-    	setInterval(() => {
-    		if (!bool) {
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[24], audioCtx.currentTime);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[26], audioCtx.currentTime + 0.2);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[20], audioCtx.currentTime + 0.4);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + 0.6);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[23], audioCtx.currentTime + 0.8);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + 1);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[26], audioCtx.currentTime + 1.2);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[23], audioCtx.currentTime + 1.4);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[41], audioCtx.currentTime + 1.6);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[40], audioCtx.currentTime + 1.8);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[39], audioCtx.currentTime + 2);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[40], audioCtx.currentTime + 2.2);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[36], audioCtx.currentTime + 2.4);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[35], audioCtx.currentTime + 2.6);
-		    	fun.osc.frequency.setValueAtTime(this.state.scale[30], audioCtx.currentTime + 2.8);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[29], audioCtx.currentTime);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[31], audioCtx.currentTime + 0.1);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + 0.2);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[30], audioCtx.currentTime + 0.3);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[28], audioCtx.currentTime + 0.4);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[30], audioCtx.currentTime + 0.5);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[31], audioCtx.currentTime + 0.6);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[28], audioCtx.currentTime + 0.7);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[31], audioCtx.currentTime + 0.8);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[25], audioCtx.currentTime + 0.9);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[30], audioCtx.currentTime + 1);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[28], audioCtx.currentTime + 1.1);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[30], audioCtx.currentTime + 1.2);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[31], audioCtx.currentTime + 1.3);
-		    	harm.osc.frequency.setValueAtTime(this.state.scale[28], audioCtx.currentTime + 1.4);
-    		} else {
-		    	fun.osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-		    	harm.osc.frequency.setValueAtTime(293.664767917407560, audioCtx.currentTime);
-    		}
-	    	bool = !bool;
-    	}, this.state.bpm * 2)
+        this.randomArpeggiator(audioCtx, 3, this.state.scale, 5, this.state.text.length);
     }
 
     render() {
@@ -283,7 +263,7 @@ export default class TextInterface extends React.Component {
                 <button onClick={this.handleClickListenByChar}>SUS</button>
                 <button id="stop" onClick={this.handleClickStop}>STOP</button>
                 <button onClick={this.handleClickListenChord}>CHORDS</button>
-                <button onClick={this.handleFun}>FUN</button>
+                <button onClick={this.handleFun}>RAND</button>
                 <br/>
                 </div>
                 <div className='col-sm-2'>
