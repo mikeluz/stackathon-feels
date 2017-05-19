@@ -29,4 +29,4 @@ function reduceValues(freqs) {
   return (masterFreq / feels.length);
 }
 
-// module.exports = {findValueOfWords, reduceValues};
+module.exports = {findValueOfWords, reduceValues};

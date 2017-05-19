@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'; 
+import axios from 'axios';
 
 function findValueOfWordsByChar(str) {
       var arrOfWords = str.split(" ");
@@ -26,8 +27,6 @@ export default class TextInterface extends React.Component {
             interval: 0,
             scale: [],
             bpm: 400,
-            fun: {},
-            harm: {},
             tone: "sine"
         }
         this.handleClickListenByChar = this.handleClickListenByChar.bind(this);
@@ -38,6 +37,7 @@ export default class TextInterface extends React.Component {
         this.handleFun = this.handleFun.bind(this);
         this.handleTone = this.handleTone.bind(this);
         this.randomArpeggiator = this.randomArpeggiator.bind(this);
+        this.fetchText = this.fetchText.bind(this);
     }
 
     randomArpeggiator(context, numOfOsc, notes, rel, length) {
@@ -59,9 +59,17 @@ export default class TextInterface extends React.Component {
                 }, this.state.bpm * k);
             }
             setTimeout(() => {
-                oscArr.forEach((osc, i) => {
-                    osc.osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (i*100));
-                });
+                for (let j = 0; j < oscArr.length; j++) {
+                    if (oscArr[j]) {
+                        oscArr[j].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
+                    }                    
+                    if (oscArr[j+1]) {
+                        oscArr[j+1].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
+                    }
+                    if (oscArr[j+2]) {
+                        oscArr[j+2].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
+                    }
+                }
             }, this.state.bpm * k)
         }
     }
@@ -112,7 +120,7 @@ export default class TextInterface extends React.Component {
             setTimeout(() => {
                 osc.osc.start();
             }, (100 + (i * this.state.bpm)));
-            osc.osc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 12)
+            osc.osc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 8)
             return osc;
         });
     }
@@ -168,10 +176,6 @@ export default class TextInterface extends React.Component {
     };
 
     handleClickStop() {
-        if (this.state.fun.osc) {
-        	this.state.fun.osc.stop();
-	    	this.state.harm.osc.stop();
-        }
         this.state.oscArray.forEach(osc => {
         	if (Array.isArray(osc)) {
         		osc.forEach(osc => {
@@ -205,6 +209,16 @@ export default class TextInterface extends React.Component {
 
     handleFun() {
         this.randomArpeggiator(audioCtx, 3, this.state.scale, 5, this.state.text.length);
+    }
+
+    fetchText() {
+        axios.get('/api/howamifeeling')
+        .then(res => {
+            console.log("res", res);
+            this.setState({
+                text: res.data
+            });
+        });
     }
 
     render() {
@@ -256,14 +270,15 @@ export default class TextInterface extends React.Component {
                         defaultValue={this.state.osc.osc.frequency.value} list="volumes" name="pitch" onChange={(evt) => this.handleChangePitch(evt)}/>
                 </div>
                 <br/>
-                {/*<button>PRINT</button>*/}
+                <button id="print">PRINT</button>
                 </form>
                 <button onClick={this.handleClickListenArpByChar}>ARP</button>
                 <br/>
                 <button onClick={this.handleClickListenByChar}>SUS</button>
                 <button id="stop" onClick={this.handleClickStop}>STOP</button>
                 <button onClick={this.handleClickListenChord}>CHORDS</button>
-                <button onClick={this.handleFun}>RAND</button>
+                <button onClick={this.handleFun}>RAND</button><br/>
+                <button id="print" onClick={this.fetchText}>FEEL</button>
                 <br/>
                 </div>
                 <div className='col-sm-2'>

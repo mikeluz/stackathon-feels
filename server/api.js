@@ -6,14 +6,14 @@ var Promise = require('bluebird');
 
 api.get('/howamifeeling', function (req, res, next) {
 	var feels = fs.readFileSync('feels.txt').toString();
-	res.json(feels);
+	res.send(feels);
 });
 
 api.post('/howamifeeling', function (req, res, next) {
     var timeStamp = Date();
     var feelFreqs = findValueOfWords(req.body.feels);
     fs.appendFile('feels.txt', (req.body.feels + '\n'));
-    res.json("Success");
+    res.redirect('/');
 });
 
 module.exports = api;

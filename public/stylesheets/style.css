@@ -29,6 +29,11 @@ button {
 	background-color: red;
 }
 
+#print {
+	background-color: black;
+	color: white;
+}
+
 #pitch {
 	color: black;
 }
