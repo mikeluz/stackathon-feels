@@ -63,12 +63,12 @@ export default class TextInterface extends React.Component {
                     if (oscArr[j]) {
                         oscArr[j].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
                     }                    
-                    if (oscArr[j+1]) {
-                        oscArr[j+1].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
-                    }
-                    if (oscArr[j+2]) {
-                        oscArr[j+2].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
-                    }
+                    // if (oscArr[j+1]) {
+                    //     oscArr[j+1].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
+                    // }
+                    // if (oscArr[j+2]) {
+                    //     oscArr[j+2].osc.frequency.setValueAtTime(rel * notes[Math.floor(Math.random() * 10)], audioCtx.currentTime + (j*100));
+                    // }
                 }
             }, this.state.bpm * k)
         }
