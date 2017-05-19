@@ -16795,6 +16795,8 @@ var _reactRouter = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var style = { color: "white" };
+
 var Menu = function Menu() {
 	return _react2.default.createElement(
 		'div',
@@ -16808,8 +16810,14 @@ var Menu = function Menu() {
 				_react2.default.createElement(
 					_reactRouter.Link,
 					{ to: "/type" },
-					'Click Here'
+					'click here'
 				)
+			),
+			_react2.default.createElement('br', null),
+			_react2.default.createElement(
+				'li',
+				{ style: style },
+				'start typing'
 			)
 		)
 	);

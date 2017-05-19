@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+const style = {color:"white"};
+
 const Menu = () => (
 	<div>
 	<ul>
-		<li><Link to={"/type"}>Click Here</Link></li>
+		<li><Link to={"/type"}>click here</Link></li>
+		<br/>
+		<li style={style}>start typing</li>
 	</ul>
 	</div>
 );
