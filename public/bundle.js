@@ -15916,7 +15916,7 @@ var Menu = function Menu() {
 			_react2.default.createElement(
 				'li',
 				{ style: style },
-				'start typing'
+				'or start typing!'
 			)
 		)
 	);

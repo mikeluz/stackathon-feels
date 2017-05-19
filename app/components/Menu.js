@@ -8,7 +8,7 @@ const Menu = () => (
 	<ul>
 		<li><Link to={"/type"}>click here</Link></li>
 		<br/>
-		<li style={style}>start typing</li>
+		<li style={style}>or start typing!</li>
 	</ul>
 	</div>
 );
